@@ -11,13 +11,21 @@ void print_board(char* board) {
 }
 
 int query_player(char player) {
-    printf("Player %c, it is your turn to move. Select a position.\n", player);
-    printf("Choose a position by entering the corresponding coordinates (e.g. A2) :\n");
+    printf("\nPlayer %c, it is your turn to move. Select a position.\n", player);
 
+    int c;
     char alpha_pos, num_pos;
-    scanf(" %c%c", &alpha_pos, &num_pos);
+    do {
+        printf("Choose a position by entering the corresponding coordinates (e.g. A2) :\n");
+        alpha_pos = getchar();
+        num_pos = getchar();
+        while ((c = getchar()) != '\n' && c != EOF) { } // clear buffer
+    } while (
+        (alpha_pos - 'A') < 0 || (alpha_pos - 'A') > 2 ||
+        (num_pos - '1' < 0) || (num_pos - '1' > 2)
+    );
     
-    int pos_index = (alpha_pos - 'A') + (num_pos - '1');
+    int pos_index = (alpha_pos - 'A') * 3 + (num_pos - '1');
 
     return pos_index;
 }
