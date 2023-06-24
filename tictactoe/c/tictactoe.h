@@ -2,6 +2,6 @@
 #define TICTACTOE_H
 
 void print_board(char*);
-int query_player(char);
+void query_player(char*, char);
 
 #endif // TICTACTOE_H
